@@ -11,6 +11,7 @@ class ChatInputWidget extends StatefulWidget {
 
 class _ChatInputWidgetState extends State<ChatInputWidget> {
   final textFieldController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(

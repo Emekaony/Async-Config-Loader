@@ -13,9 +13,10 @@ class LoginScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
-      drawer: Drawer(),
-      body: SizedBox(
+      body: SizedBox.expand(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               "Let's sign you in",

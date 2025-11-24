@@ -33,12 +33,12 @@ class _ChatScreenState extends State<ChatScreen> {
           Expanded(
             child: ListView(
               children: [
-                ChatBubble(),
-                ChatBubble(),
-                ChatBubble(),
-                ChatBubble(),
-                ChatBubble(),
-                ChatBubble(),
+                ChatBubble(alignment: Alignment.centerLeft),
+                ChatBubble(alignment: Alignment.centerRight),
+                ChatBubble(alignment: Alignment.centerLeft),
+                ChatBubble(alignment: Alignment.centerRight),
+                ChatBubble(alignment: Alignment.centerLeft),
+                ChatBubble(alignment: Alignment.centerRight),
               ],
             ),
           ),
