@@ -31,15 +31,18 @@ class _ChatScreenState extends State<ChatScreen> {
       body: Column(
         children: [
           Expanded(
-            child: ListView(
-              children: [
-                ChatBubble(alignment: Alignment.centerLeft),
-                ChatBubble(alignment: Alignment.centerRight),
-                ChatBubble(alignment: Alignment.centerLeft),
-                ChatBubble(alignment: Alignment.centerRight),
-                ChatBubble(alignment: Alignment.centerLeft),
-                ChatBubble(alignment: Alignment.centerRight),
-              ],
+            child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (BuildContext context, int index) {
+                // in a real world scenario, chat bubble alignment will be based on userID
+                final bubbleAlignment = index % 2 == 0
+                    ? Alignment.centerLeft
+                    : Alignment.centerRight;
+                return ChatBubble(
+                  alignment: bubbleAlignment,
+                  message: "Hello emeka",
+                );
+              },
             ),
           ),
           ChatInputWidget(),

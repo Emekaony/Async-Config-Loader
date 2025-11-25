@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 
 class ChatBubble extends StatelessWidget {
   final Alignment alignment;
-  const ChatBubble({super.key, required this.alignment});
+  final String message;
+  const ChatBubble({super.key, required this.alignment, required this.message});
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: alignment,
       child: Container(
-        padding: EdgeInsets.all(24),
+        padding: EdgeInsets.all(15),
         width: 200,
         margin: EdgeInsets.all(40),
         decoration: BoxDecoration(
@@ -29,7 +30,7 @@ class ChatBubble extends StatelessWidget {
               textAlign: alignment == Alignment.centerLeft
                   ? TextAlign.start
                   : TextAlign.end,
-              "Hi, this is Nnaemeka",
+              message,
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.black,
