@@ -87,8 +87,8 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () => loginUser(
                     context,
                     formKey: _formKey,
-                    usernameController: usernameController,
-                    passwordController: passwordController,
+                    username: usernameController.text,
+                    password: passwordController.text,
                   ),
                   child: Text(
                     "Log In",

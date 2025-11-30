@@ -6,15 +6,15 @@ import 'package:simple_application/screens/chat_screen.dart';
 void loginUser(
   BuildContext context, {
   required GlobalKey<FormState> formKey,
-  required TextEditingController usernameController,
-  required TextEditingController passwordController,
+  required String username,
+  required String password,
 }) {
   if (formKey.currentState != null && formKey.currentState!.validate()) {
     if (kDebugMode) {
       print("Log in Successiful");
 
-      print("Username: ${usernameController.text}");
-      print("Username: ${passwordController.text}");
+      print("Username: $username");
+      print("Username: $password");
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) {
