@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_application/screens/chat_screen.dart';
 
+// this is where we handle logging the user in!
 void loginUser(
   BuildContext context, {
   required GlobalKey<FormState> formKey,

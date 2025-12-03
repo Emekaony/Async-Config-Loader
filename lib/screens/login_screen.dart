@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:simple_application/components/generic_input_field.dart';
+import 'package:simple_application/components/generic_text_button.dart';
 import 'package:simple_application/utils/login_utils.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -7,6 +9,15 @@ class LoginScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+
+  void handleLoginPressed(BuildContext context) {
+    loginUser(
+      context,
+      formKey: _formKey,
+      username: usernameController.text,
+      password: passwordController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,37 +55,24 @@ class LoginScreen extends StatelessWidget {
               width: 100,
             ),
             SizedBox(height: 10),
-            /*
-            u need the TextFormField to be a descendant of this form for u to 
-            be able to validate it using the formKey property
-            */
             Form(
               key: _formKey,
               child: Column(
                 children: [
                   // use a form field when u need a validator
                   // regular TextField does NOT have a validator property
-                  TextFormField(
-                    autocorrect: false,
+                  GenericInputField(
+                    autoCorrect: true,
                     controller: usernameController,
                     validator: (value) => validateUserName(value),
-                    decoration: InputDecoration(
-                      label: Text(("Username")),
-                      // hintText: "enter your username",
-                      border: OutlineInputBorder(),
-                    ),
+                    hintText: "Enter your username...",
                   ),
                   SizedBox(height: 10),
-                  TextFormField(
-                    autocorrect: false,
+                  GenericInputField(
+                    isObscureTextField: true,
                     controller: passwordController,
                     validator: (value) => validatePassword(value),
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      label: Text("Password"),
-                      // hintText: "enter ur password",
-                      border: OutlineInputBorder(),
-                    ),
+                    hintText: "Enter your password...",
                   ),
                 ],
               ),
@@ -83,16 +81,12 @@ class LoginScreen extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                ElevatedButton(
-                  onPressed: () => loginUser(
-                    context,
-                    formKey: _formKey,
-                    username: usernameController.text,
-                    password: passwordController.text,
-                  ),
-                  child: Text(
-                    "Log In",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                GenericTextButton(
+                  text: "Log in",
+                  onPressed: () => handleLoginPressed(context),
+                  textStyle: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
                   ),
                 ),
               ],
