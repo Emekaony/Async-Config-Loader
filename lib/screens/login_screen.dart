@@ -4,13 +4,9 @@ import 'package:simple_application/components/generic_text_button.dart';
 import 'package:simple_application/components/spacing.dart';
 import 'package:simple_application/utils/login_utils.dart';
 import 'package:social_media_buttons/social_media_buttons.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
-
-  final Uri _url = Uri.parse("https://google.com");
-  final phoneNumber = "2094908830";
 
   final _formKey = GlobalKey<FormState>();
   final usernameController = TextEditingController();

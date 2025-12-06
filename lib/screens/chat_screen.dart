@@ -8,7 +8,7 @@ import 'package:simple_application/models/chat_message_entity.dart';
 class ChatScreen extends StatefulWidget {
   ChatScreen({super.key});
 
-  final List<ChatMessageEntity> mockChatMessages = [
+  final List<ChatMessageEntity> _mockmessages = [
     ChatMessageEntity(
       text: "Hello there!",
       id: "1",
@@ -113,13 +113,13 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: widget.mockChatMessages.length,
+                itemCount: widget._mockmessages.length,
                 itemBuilder: (BuildContext context, int index) {
                   final Alignment buttonAlignment = index % 2 == 0
                       ? Alignment.centerLeft
                       : Alignment.centerRight;
                   return ChatBubble(
-                    entity: widget.mockChatMessages[index],
+                    entity: widget._mockmessages[index],
                     alignment: buttonAlignment,
                   );
                 },
