@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:simple_application/models/chat_message_entity.dart';
 
 class ChatBubble extends StatelessWidget {
-  final String message;
+  final ChatMessageEntity entity;
   final Alignment alignment;
-  const ChatBubble({super.key, required this.message, required this.alignment});
+  const ChatBubble({super.key, required this.alignment, required this.entity});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,21 @@ class ChatBubble extends StatelessWidget {
           ),
           color: Colors.blue,
         ),
-        child: Text(message),
+        child: Column(
+          children: [
+            Text(entity.text),
+            // conditionally render the chat bubbles image
+            entity.imageUrl == null
+                // changed from container to sizedBox
+                ? SizedBox()
+                : Image.asset(
+                    "assets/images/silver_ball.jpg",
+                    width: 100,
+                    height: 100,
+                  ),
+            Text("Author: ${entity.author.name}"),
+          ],
+        ),
       ),
     );
   }
