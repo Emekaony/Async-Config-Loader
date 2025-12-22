@@ -48,28 +48,33 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ],
       ),
-      body: Container(
-        color: Colors.black,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: _messages.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final Alignment buttonAlignment = index % 2 == 0
-                      ? Alignment.centerLeft
-                      : Alignment.centerRight;
-                  return ChatBubble(
-                    entity: _messages[index],
-                    alignment: buttonAlignment,
-                  );
-                },
+      body: GestureDetector(
+        onTap: () {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
+        child: Container(
+          color: Colors.black,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _messages.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final Alignment buttonAlignment = index % 2 == 0
+                        ? Alignment.centerLeft
+                        : Alignment.centerRight;
+                    return ChatBubble(
+                      entity: _messages[index],
+                      alignment: buttonAlignment,
+                    );
+                  },
+                ),
               ),
-            ),
-            // ignore this function for now
-            ChatInputWidget(onSubmit: (_) {}),
-          ],
+              // ignore this function for now
+              ChatInputWidget(onSubmit: (_) {}),
+            ],
+          ),
         ),
       ),
     );

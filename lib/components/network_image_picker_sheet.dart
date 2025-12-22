@@ -1,9 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_application/models/image_model.dart';
 import 'package:simple_application/repo/image_repository.dart';
 
 class NetworkImagePickerBottomSheet extends StatelessWidget {
-  const NetworkImagePickerBottomSheet({super.key});
+  final void Function(String) onImageSelected;
+  const NetworkImagePickerBottomSheet({
+    super.key,
+    required this.onImageSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +40,27 @@ class NetworkImagePickerBottomSheet extends StatelessWidget {
                     maxCrossAxisExtent: MediaQuery.of(context).size.width * 0.5,
                   ),
                   itemBuilder: (context, index) {
-                    return Image.network(snapshot.data![index].urlFullSize);
+                    // get data here once
+                    final data = snapshot.data![index];
+                    return GestureDetector(
+                      onTap: () {
+                        // pass the image
+                        onImageSelected(data.urlFullSize);
+                        final String msg =
+                            "Image with title ${data.title} was selected";
+                        if (kDebugMode) {
+                          print(msg);
+                        }
+                      },
+                      child: Image.network(data.urlFullSize),
+                    );
                   },
                 );
               } else {
-                return CircularProgressIndicator.adaptive(
-                  backgroundColor: Colors.red,
+                return Center(
+                  child: CircularProgressIndicator.adaptive(
+                    backgroundColor: Colors.red,
+                  ),
                 );
               }
             },

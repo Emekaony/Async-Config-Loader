@@ -3,34 +3,28 @@ import 'package:flutter/material.dart';
 class DemoScreen extends StatelessWidget {
   const DemoScreen({super.key});
 
+  Stream<int> yieldNumbers() async* {
+    List<int> nums = [9, 4, 1, 3, 6];
+    for (int number in nums) {
+      // wait a little bit so things are not immediately avaiable
+      await Future.delayed(const Duration(seconds: 2));
+      yield number;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: SizedBox(
-        child: Column(
-          children: [
-            Expanded(
-              // fit: FlexFit.tight,
-              child: Container(color: Colors.green),
-            ),
-            Flexible(
-              fit: FlexFit.tight,
-              child: Container(color: Colors.black),
-            ),
-            Container(height: 100, color: Colors.red),
-          ],
+      body: SizedBox.expand(
+        child: StreamBuilder<int>(
+          initialData: 0,
+          stream: yieldNumbers(),
+          builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+            return Text("The current value of i is ${snapshot.data}");
+          },
         ),
       ),
     );
   }
 }
-
-/*
-Flexible has a .loose property that allows it to take the minimum space needed
-by default. Expanded on the other hand is basically Flexible with FlexFit.tight.
-This means it wants to take up as much available space as possible.
-
-.tight -> Fill up all the space.
-.loose -> Fill up the minimum space possible.
-*/
